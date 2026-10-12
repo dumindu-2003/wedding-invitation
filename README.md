@@ -1,115 +1,107 @@
-# wedding-invitation
-Eternal Moments is a cinematic digital wedding invitation website built with React, Vite, Tailwind CSS, and Framer Motion. It features elegant animations, romantic storytelling, a wedding countdown, photo gallery, event schedule, venue directions, and background music for a memorable wedding experience.
-# 💍 Eternal Moments — Digital Wedding Invitation
+# Eternal Moments — Digital Wedding Invitation
 
-A premium cinematic digital wedding invitation website designed to transform traditional wedding invitations into a beautiful, interactive online experience.
+A romantic blush-pink digital wedding invitation for Punshashini and Thushan, with a floral opening cover, wedding details, a live countdown, gallery, venue directions, and a preview wish form.
 
-## ✨ Features
+## Run the project
 
-* 🎬 Cinematic opening animation and invitation reveal
-* 💐 Elegant floral decorations and golden particle effects
-* ❤️ Romantic couple storytelling section
-* ⏳ Live wedding countdown timer
-* 📸 Interactive photo gallery with image lightbox
-* 🗓️ Animated wedding event timeline
-* 📍 Wedding venue details and Google Maps directions
-* 🎵 Optional background music with play/pause controls
-* 🎨 Customizable names, dates, venue details, photos, and music
-* 📱 Responsive design for mobile, tablet, and desktop
-* ♿ Accessible interactions and reduced-motion support
+You need Node.js and npm.
 
-## 🛠️ Technologies Used
+```bash
+npm install
+npm run dev
+```
 
-* React.js
-* Vite
-* JavaScript
-* Tailwind CSS
-* Framer Motion
-* Lucide React
-* HTML5 Audio
-* CSS Animations
+Open the local address Vite prints, usually `http://127.0.0.1:5173/`.
 
-## 🚀 Getting Started
+To create a production build:
 
-### Prerequisites
+```bash
+npm run build
+npm run preview
+```
 
-* Node.js
-* npm
+The `dist` folder can be deployed to any static host, such as Vercel, Netlify, or GitHub Pages. There is no backend, database, or API key.
 
-### Installation
+## Personalize the invitation
 
-1. Clone the repository:
+Edit only `src/data/weddingConfig.js`. Every scene reads from that file.
 
-   ```bash
-   git clone YOUR_REPOSITORY_URL
-   ```
+| What to change | Where |
+| --- | --- |
+| Bride and groom names | `couple.bride` and `couple.groom` |
+| Wedding date and countdown | `dateTime`, `dateLine`, `year`, `shortDate` |
+| Ceremony time | `ceremonyTime` |
+| Reception | `reception` |
+| Venue name, address, and note | `venue` |
+| Google Maps pin and embedded map | `venue.mapsUrl` and `venue.mapEmbedUrl` |
+| Dress code | `dressCode` |
+| Invitation lines | `invitation` |
+| Our Story chapters | `story.chapters` |
+| Schedule | `schedule.events` |
+| Gallery | `gallery.images` |
+| Music file | `music.src` |
 
-2. Navigate to the project directory:
+`dateTime` must be an ISO 8601 string with a timezone offset, so every guest counts down to the same moment:
 
-   ```bash
-   cd eternal-moments
-   ```
+```js
+dateTime: "2027-07-20T09:30:00+05:30",
+```
 
-3. Install dependencies:
+The venue section shows the hotel on an embedded Google Map. **Get Directions** opens the same Kashyapa Hotel pin. Both come from the hotel’s published map. The wish form is a preview only and does not send or save messages.
 
-   ```bash
-   npm install
-   ```
+## Photographs
 
-4. Start the development server:
+Placeholder images live in `public/images/`. Replace the files, or add your own and update the `src` and `alt` values in `weddingConfig.js`.
 
-   ```bash
-   npm run dev
-   ```
+Keep the same filenames if you do not want to edit the config:
 
-5. Open the local URL displayed in your terminal.
+- `story-meeting.jpg`, `story-journey.jpg`, `story-promise.jpg`
+- `gallery-1.jpg` through `gallery-6.jpg`
+- `venue.jpg`
 
-## 🎨 Customization
+Use compressed `.jpg` or `.webp` files around 1600 pixels wide. The included photographs are Unsplash placeholders for demonstration and should be replaced with the couple's own pictures.
 
-Update `src/data/weddingConfig.js` to personalize the invitation.
+## Music
 
-You can customize:
+`public/audio/background.wav` is a quiet generated tone so the player works before you add a real recording. Replace it with the couple's chosen piece:
 
-* Bride and groom names
-* Wedding date and ceremony time
-* Venue name and address
-* Invitation message
-* Couple's story
-* Wedding schedule
-* Gallery photographs
-* Background music
+1. Add an `.mp3` or `.wav` file to `public/audio/`.
+2. Set `music.src` in `weddingConfig.js`, for example `"/audio/our-song.mp3"`.
 
-Replace the placeholder images and audio files with your own assets.
+Music never starts by itself. A guest presses the music button to play or pause.
 
-## 📁 Project Structure
+## Accessibility
+
+- Buttons and links have visible focus styles and accessible names.
+- The gallery opens a keyboard-friendly lightbox. Escape closes it. Arrow keys move between photographs.
+- If a guest has **Reduce motion** enabled, entrance animations, floating petals, and particle movement are turned off, and the opening appears immediately.
+
+## Project structure
 
 ```text
 src/
-├── assets/
-│   ├── images/
-│   └── audio/
 ├── components/
+│   ├── OpeningScene.jsx
+│   ├── WeddingInvitation.jsx
+│   ├── OurStory.jsx
+│   ├── WeddingDetails.jsx
+│   ├── WeddingCountdown.jsx
+│   ├── CoupleGallery.jsx
+│   ├── WeddingTimeline.jsx
+│   ├── VenueSection.jsx
+│   ├── FinalScene.jsx
+│   ├── MusicPlayer.jsx
+│   ├── FloatingPetals.jsx
+│   └── GoldenParticles.jsx
 ├── data/
 │   └── weddingConfig.js
 ├── hooks/
-│   └── useCountdown.js
+│   ├── useCountdown.js
+│   └── usePrefersReducedMotion.js
 ├── App.jsx
 ├── main.jsx
 └── index.css
+public/
+├── images/
+└── audio/
 ```
-
-## 🌐 Deployment
-
-The frontend can be deployed using platforms such as Vercel, Netlify, or GitHub Pages, depending on the project's configuration.
-
-## 📌 Project Scope
-
-Eternal Moments is a frontend-only application. It does not require a backend, database, or authentication system.
-
-## ❤️ Purpose
-
-To create a personalized, elegant, and memorable digital wedding invitation through cinematic animations, romantic storytelling, and interactive design.
-
----
-
-**Made with love for unforgettable moments. 💍✨**

@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-script: "Great Vibes", "Segoe Script", cursive;
+  --font-sans: "Lato", "Segoe UI", sans-serif;
+
+  --color-ivory: #fff9f7;
+  --color-blush: #f8e5e7;
+  --color-floral: #e9aab5;
+  --color-rose: #c87888;
+  --color-romantic: #a8324a;
+  --color-ink: #5b3b43;
+  --color-muted: #8a6570;
+  --color-champagne: #d8b58a;
+  --color-sage: #8fa08a;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  background: #f8e5e7;
+  color: #5b3b43;
+  font-family: Lato, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #e9aab5;
+  color: #5b3b43;
+}
+
+:focus-visible {
+  outline: 1px solid #c87888;
+  outline-offset: 3px;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  max-width: 100%;
+}
+
+.invitation-sheet {
+  width: min(100%, 40rem);
+}
+
+.lining-figures {
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+}
+
+@keyframes petal-fall {
+  0% {
+    transform: translate3d(0, -8vh, 0) rotate(var(--petal-rot, 0deg));
+  }
+  100% {
+    transform: translate3d(var(--petal-drift, 12px), 78vh, 0) rotate(calc(var(--petal-rot, 0deg) + 80deg));
+  }
+}
+
+.animate-petal {
+  animation-name: petal-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gallery-card img {
+    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .gallery-card:hover img {
+    transform: scale(1.035);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-petal {
+    animation: none;
+  }
+
+  .gallery-card img {
+    transition: none;
+  }
+}
