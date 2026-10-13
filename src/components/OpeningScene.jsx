@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import weddingConfig from "../data/weddingConfig";
 import usePrefersReducedMotion from "../hooks/usePrefersReducedMotion";
 import { easeLux } from "../utils/motion";
 import FloatingPetals from "./FloatingPetals";
 import { FloralCorners, FloralDivider } from "./Florals";
+import RunningCoupleAnimation from "./RunningCoupleAnimation";
 
 const flapEase = [0.62, 0.04, 0.18, 1];
 const cardEase = [0.16, 1, 0.3, 1];
@@ -13,26 +14,20 @@ export default function OpeningScene({ leaving, onOpen, onExited }) {
   const reduce = usePrefersReducedMotion();
   const { opening, couple, invitation } = weddingConfig;
   const revealed = useRef(false);
-  const videoRef = useRef(null);
   const [openingCard, setOpeningCard] = useState(false);
 
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return undefined;
-    video.muted = true;
-    const attempt = video.play();
-    if (attempt) attempt.catch(() => {});
-    return undefined;
-  }, []);
 
-  const open = () => {
+
+  const triggerOpen = useCallback(() => {
     if (openingCard || leaving || revealed.current) return;
-    if (reduce) {
-      onOpen();
-      return;
-    }
+    if (reduce) { onOpen(); return; }
     setOpeningCard(true);
-  };
+  }, [openingCard, leaving, reduce, onOpen]);
+
+  // Called by RunningCoupleAnimation after hug+hearts → opens invitation
+  const handleAnimationComplete = useCallback(() => {
+    triggerOpen();
+  }, [triggerOpen]);
 
   useEffect(() => {
     if (!openingCard) return undefined;
@@ -50,9 +45,7 @@ export default function OpeningScene({ leaving, onOpen, onExited }) {
       initial={{ opacity: 1 }}
       animate={{ opacity: leaving ? 0 : 1 }}
       transition={{ duration: reduce ? 0.2 : 0.75, ease: easeLux, delay: leaving && !reduce ? 0.12 : 0 }}
-      onAnimationComplete={() => {
-        if (leaving) onExited();
-      }}
+      onAnimationComplete={() => { if (leaving) onExited(); }}
     >
       <div
         className="relative h-full w-full max-w-xl sm:h-[min(920px,100%)]"
@@ -76,35 +69,31 @@ export default function OpeningScene({ leaving, onOpen, onExited }) {
             aria-hidden={!openingCard}
           >
             <p className="font-script text-[clamp(2.6rem,10vw,4.2rem)] leading-none text-romantic">{couple.bride.firstName}</p>
-            <p className="my-1 font-script text-3xl leading-none text-rose" aria-hidden="true">
-              &
-            </p>
+            <p className="my-1 font-script text-3xl leading-none text-rose" aria-hidden="true">&</p>
             <p className="font-script text-[clamp(2.6rem,10vw,4.2rem)] leading-none text-romantic">{couple.groom.firstName}</p>
             <p className="mt-4 font-sans text-[0.68rem] tracking-[0.26em] text-rose uppercase">{invitation.marriedLine}</p>
             <FloralDivider className="mt-4" />
           </motion.article>
 
-          <div className="absolute inset-x-0 bottom-0 z-20 h-[54%] overflow-hidden bg-ivory">
-            <div className="relative z-10 flex h-full items-end justify-center px-1 pb-1">
-              <video
-                ref={videoRef}
-                src={opening.coupleVideo}
-                poster={opening.couplePoster}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-                aria-label={opening.coupleLabel}
-                style={{ width: "100%", maxHeight: "300px", objectFit: "contain" }}
+          {/* ── Bottom half: animation only (no photo) ── */}
+          <div className="absolute inset-x-0 bottom-0 z-20 h-[60%] overflow-visible bg-ivory">
+
+            {/* Cartoon couple animation */}
+            <div className="absolute inset-x-0 bottom-4 z-10 flex items-end justify-center px-1">
+              <RunningCoupleAnimation
+                className="w-full max-w-md"
+                onComplete={handleAnimationComplete}
               />
             </div>
+
+            {/* Floral corners overlay */}
             <div className="pointer-events-none absolute inset-0 z-20">
               <FloralCorners edges="bottom" size="h-20 w-20 sm:h-28 sm:w-28" />
             </div>
           </div>
         </section>
 
+        {/* Envelope flap (top) */}
         <motion.div
           data-envelope-flap
           className="absolute inset-x-0 top-0 z-30 h-[58%] origin-top"
@@ -129,14 +118,18 @@ export default function OpeningScene({ leaving, onOpen, onExited }) {
             <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 pb-8 text-center">
               <p className="font-serif text-2xl text-ink italic sm:text-3xl">{opening.hint}</p>
               <FloralDivider className="mt-5" />
-              <button
+              {/* Skip button — fades in so user can skip animation */}
+              <motion.button
                 type="button"
-                onClick={open}
+                onClick={triggerOpen}
                 disabled={openingCard || leaving}
-                className="mt-7 cursor-pointer bg-romantic px-8 py-3.5 font-sans text-[0.72rem] tracking-[0.22em] text-ivory uppercase shadow-[0_8px_20px_rgba(168,50,74,0.18)] transition duration-300 hover:bg-rose active:scale-[0.98] disabled:opacity-70"
+                className="mt-7 cursor-pointer bg-romantic px-8 py-3.5 font-sans text-[0.72rem] tracking-[0.22em] text-ivory uppercase shadow-[0_8px_20px_rgba(168,50,74,0.18)] transition duration-300 hover:bg-rose active:scale-[0.98] disabled:opacity-50"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.5, duration: 0.5 }}
               >
                 {opening.button}
-              </button>
+              </motion.button>
             </div>
             <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
               <polyline points="0,84 50,100 100,84" fill="none" stroke="#e9aab5" strokeWidth="0.35" />
@@ -163,6 +156,7 @@ export default function OpeningScene({ leaving, onOpen, onExited }) {
           </div>
         </motion.div>
 
+        {/* PT monogram seal */}
         <motion.div
           className="absolute top-[58%] left-1/2 z-40 flex h-14 w-14 items-center justify-center rounded-full border border-champagne bg-ivory shadow-[0_8px_16px_rgba(168,50,74,0.14)]"
           aria-hidden="true"
