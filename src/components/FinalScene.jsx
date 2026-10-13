@@ -8,10 +8,10 @@ export default function FinalScene() {
   const { invitation, dateLine } = weddingConfig;
 
   return (
-    <section id="farewell" className="relative overflow-hidden bg-ivory px-5 py-20 pb-28 text-center text-ink sm:px-8">
+    <section id="farewell" className="wash-rose relative overflow-hidden px-5 py-20 pb-28 text-center text-ink sm:px-8">
       <FloralCorners size="h-24 w-24" />
       <FloatingPetals />
-      <div className="relative z-10 mx-auto max-w-lg border border-floral px-5 py-12">
+      <div className="gold-frame relative z-10 mx-auto max-w-lg bg-ivory/85 px-5 py-12">
         <Reveal>
           <SmallBouquet className="mx-auto h-16 w-40 text-floral" />
           <CoupleNames as="p" className="mt-4" />

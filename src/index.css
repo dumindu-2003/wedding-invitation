@@ -5,15 +5,17 @@
   --font-script: "Great Vibes", "Segoe Script", cursive;
   --font-sans: "Lato", "Segoe UI", sans-serif;
 
-  --color-ivory: #fff9f7;
-  --color-blush: #f8e5e7;
-  --color-floral: #e9aab5;
-  --color-rose: #c87888;
-  --color-romantic: #a8324a;
-  --color-ink: #5b3b43;
-  --color-muted: #8a6570;
-  --color-champagne: #d8b58a;
-  --color-sage: #8fa08a;
+  --color-ivory: #fffaf6;
+  --color-blush: #ffe0ea;
+  --color-floral: #f48aaa;
+  --color-rose: #e24b73;
+  --color-romantic: #c2185b;
+  --color-ink: #4a2433;
+  --color-muted: #8a4d62;
+  --color-champagne: #e2b04a;
+  --color-sage: #5f9a6a;
+  --color-coral: #ff7a59;
+  --color-gold: #d4a017;
 }
 
 html {
@@ -25,8 +27,12 @@ body {
   margin: 0;
   min-height: 100dvh;
   overflow-x: hidden;
-  background: #f8e5e7;
-  color: #5b3b43;
+  background:
+    radial-gradient(circle at 12% 8%, #ffd56a 0%, transparent 28%),
+    radial-gradient(circle at 88% 12%, #ff8fb5 0%, transparent 32%),
+    radial-gradient(circle at 78% 88%, #ffb088 0%, transparent 30%),
+    linear-gradient(155deg, #ffc2d8 0%, #ffe3b0 46%, #ffb7cf 100%);
+  color: #4a2433;
   font-family: Lato, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -38,12 +44,12 @@ body {
 }
 
 ::selection {
-  background: #e9aab5;
-  color: #5b3b43;
+  background: #f48aaa;
+  color: #4a2433;
 }
 
 :focus-visible {
-  outline: 1px solid #c87888;
+  outline: 1px solid #e24b73;
   outline-offset: 3px;
 }
 
@@ -58,6 +64,49 @@ img {
 
 .invitation-sheet {
   width: min(100%, 40rem);
+}
+
+.script-title {
+  color: #9d1244;
+  line-height: 1.45;
+  padding: 0.12em 0.55em 0.04em;
+  overflow: visible;
+}
+
+.wash-rose {
+  background:
+    radial-gradient(ellipse at top, #ffe7b0 0%, transparent 46%),
+    radial-gradient(ellipse at bottom right, #ffc1d6 0%, transparent 42%),
+    linear-gradient(180deg, #fff7f2 0%, #ffd9e6 100%);
+}
+
+.wash-peach {
+  background:
+    radial-gradient(circle at 85% 0%, #ffd27a 0%, transparent 40%),
+    radial-gradient(circle at 10% 100%, #ffb3cc 0%, transparent 42%),
+    linear-gradient(180deg, #fff0f5 0%, #ffe0cc 100%);
+}
+
+.wash-gold {
+  background: linear-gradient(155deg, #ffd0e2 0%, #ffe7b8 48%, #ffc9dc 100%);
+}
+
+.gold-frame {
+  border: 1.5px solid #e2b04a;
+  box-shadow:
+    inset 0 0 0 5px #fffaf6,
+    inset 0 0 0 6px #f48aaa,
+    0 16px 40px rgba(194, 24, 91, 0.1);
+}
+
+.btn-festive {
+  background-image: linear-gradient(120deg, #c2185b 0%, #e24b73 55%, #e2b04a 140%);
+  color: #fffaf6;
+  box-shadow: 0 10px 24px rgba(194, 24, 91, 0.22);
+}
+
+.btn-festive:hover {
+  filter: brightness(1.06);
 }
 
 .lining-figures {

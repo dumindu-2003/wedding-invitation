@@ -33,7 +33,7 @@ export default function App() {
   }, [coverVisible]);
 
   return (
-    <div className="min-h-dvh bg-blush text-ink">
+    <div className="min-h-dvh text-ink">
       {opened && (
         <>
           <a
@@ -45,7 +45,7 @@ export default function App() {
           <SceneNav />
           <MusicPlayer />
           <motion.main
-            className="mx-auto min-h-dvh w-full max-w-xl bg-ivory sm:my-6 sm:min-h-[calc(100dvh-3rem)] sm:overflow-hidden sm:rounded-[2rem] sm:shadow-[0_24px_70px_rgba(168,50,74,0.08)]"
+            className="mx-auto min-h-dvh w-full max-w-xl bg-ivory ring-2 ring-champagne sm:my-6 sm:min-h-[calc(100dvh-3rem)] sm:overflow-hidden sm:rounded-[2rem] sm:shadow-[0_28px_80px_rgba(194,24,91,0.22)]"
             initial={reduce ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, ease: easeLux }}

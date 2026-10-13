@@ -21,12 +21,12 @@ export default function WeddingDetails() {
 
   return (
     <>
-      <section id="details" className="relative overflow-hidden bg-ivory px-5 py-16 text-ink sm:px-8 sm:py-20">
-        <div className="relative mx-auto max-w-lg border border-floral px-5 py-10 sm:px-8">
+      <section id="details" className="wash-rose relative overflow-hidden px-5 py-16 text-ink sm:px-8 sm:py-20">
+        <div className="gold-frame relative mx-auto max-w-lg bg-ivory/90 px-5 py-10 sm:px-8">
           <FloralCorners size="h-16 w-16" />
           <Reveal className="relative z-10 text-center">
             <p className="font-sans text-[0.72rem] tracking-[0.24em] text-rose uppercase">The Celebration</p>
-            <h2 className="mt-3 font-script text-5xl text-romantic">{dateLine}</h2>
+            <h2 className="script-title mt-3 font-script text-5xl">{dateLine}</h2>
             <p className="mt-1 font-serif text-lg text-muted italic">{weekday}</p>
             <FloralDivider className="mt-5" />
           </Reveal>
@@ -40,7 +40,7 @@ export default function WeddingDetails() {
         </div>
       </section>
 
-      <section id="countdown" className="bg-blush px-5 py-14 sm:px-8">
+      <section id="countdown" className="wash-gold px-5 py-14 sm:px-8">
         <div className="mx-auto max-w-lg">
           <WeddingCountdown
             dateTime={dateTime}

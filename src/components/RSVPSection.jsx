@@ -26,11 +26,11 @@ export default function RSVPSection() {
   };
 
   return (
-    <section id="wishes" className="bg-blush/50 px-5 py-16 text-ink sm:px-8 sm:py-20">
+    <section id="wishes" className="wash-gold px-5 py-16 text-ink sm:px-8 sm:py-20">
       <div className="mx-auto max-w-lg">
         <Reveal className="text-center">
           <p className="font-sans text-[0.72rem] tracking-[0.24em] text-rose uppercase">{wishes.eyebrow}</p>
-          <h2 className="mt-3 font-script text-5xl text-romantic">{wishes.heading}</h2>
+          <h2 className="script-title mt-3 font-script text-5xl">{wishes.heading}</h2>
           <p className="mt-4 font-serif text-xl text-muted italic">{wishes.message}</p>
           <p className="mt-3 font-sans text-xs leading-relaxed text-rose">{wishes.demoNote}</p>
         </Reveal>
@@ -96,7 +96,7 @@ export default function RSVPSection() {
 
             <button
               type="submit"
-              className="w-full cursor-pointer bg-rose px-6 py-3.5 font-sans text-[0.72rem] tracking-[0.2em] text-ivory uppercase transition hover:bg-romantic active:scale-[0.99]"
+              className="btn-festive w-full cursor-pointer px-6 py-3.5 font-sans text-[0.72rem] tracking-[0.2em] uppercase transition active:scale-[0.99]"
             >
               Send wishes
             </button>

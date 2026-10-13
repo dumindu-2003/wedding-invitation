@@ -60,11 +60,11 @@ export default function CoupleGallery() {
   const current = active === null ? null : images[active];
 
   return (
-    <section id="gallery" className="bg-ivory px-5 py-16 text-ink sm:px-8 sm:py-20">
+    <section id="gallery" className="wash-rose px-5 py-16 text-ink sm:px-8 sm:py-20">
       <div className="mx-auto max-w-3xl">
         <Reveal className="text-center">
           <p className="font-sans text-[0.72rem] tracking-[0.24em] text-rose uppercase">{gallery.eyebrow}</p>
-          <h2 className="mt-3 font-script text-5xl text-romantic sm:text-6xl">{gallery.heading}</h2>
+          <h2 className="script-title mt-3 font-script text-5xl sm:text-6xl">{gallery.heading}</h2>
         </Reveal>
 
         <ul className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -75,7 +75,7 @@ export default function CoupleGallery() {
                 ref={(node) => {
                   triggers.current[index] = node;
                 }}
-                className={`gallery-card block w-full cursor-pointer overflow-hidden rounded-2xl bg-blush ${image.frame || "aspect-[4/5]"}`}
+                className={`gallery-card block w-full cursor-pointer overflow-hidden rounded-2xl bg-blush ring-2 ring-champagne/80 ${image.frame || "aspect-[4/5]"}`}
                 onClick={() => setActive(index)}
                 aria-label={`View photograph: ${image.alt}`}
               >

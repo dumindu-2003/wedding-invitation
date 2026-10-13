@@ -22,17 +22,17 @@ function Blossom({ x, y, scale = 1, fill = "currentColor" }) {
 export function CornerSpray({ className = "" }) {
   return (
     <svg viewBox="0 0 220 220" className={className} fill="none" aria-hidden="true">
-      <path d="M8 16C48 28 36 78 78 112" stroke="#c87888" strokeWidth="1" />
-      <path d="M16 8C58 24 96 30 148 72" stroke="#c87888" strokeWidth="1" />
-      <path d="M6 28C24 70 22 118 54 168" stroke="#8fa08a" strokeWidth="1" />
-      <ellipse cx="46" cy="48" rx="16" ry="6" transform="rotate(-40 46 48)" fill="#f8e5e7" stroke="#e9aab5" />
-      <ellipse cx="62" cy="78" rx="18" ry="6.5" transform="rotate(-12 62 78)" fill="#f8e5e7" stroke="#c87888" />
-      <ellipse cx="34" cy="96" rx="14" ry="5" transform="rotate(30 34 96)" fill="#e9aab5" fillOpacity="0.45" stroke="#c87888" />
-      <ellipse cx="108" cy="52" rx="15" ry="5.5" transform="rotate(-28 108 52)" fill="#f8e5e7" stroke="#e9aab5" />
-      <ellipse cx="48" cy="142" rx="13" ry="5" transform="rotate(24 48 142)" stroke="#8fa08a" fill="#8fa08a" fillOpacity="0.25" />
-      <Blossom x={82} y={112} fill="#e9aab5" />
-      <Blossom x={146} y={70} scale="0.82" fill="#f3c3cb" />
-      <Blossom x={56} y={166} scale="0.62" fill="#c87888" />
+      <path d="M8 16C48 28 36 78 78 112" stroke="#e24b73" strokeWidth="1.4" />
+      <path d="M16 8C58 24 96 30 148 72" stroke="#d4a017" strokeWidth="1.4" />
+      <path d="M6 28C24 70 22 118 54 168" stroke="#5f9a6a" strokeWidth="1.4" />
+      <ellipse cx="46" cy="48" rx="16" ry="6" transform="rotate(-40 46 48)" fill="#ffe0ea" stroke="#f48aaa" />
+      <ellipse cx="62" cy="78" rx="18" ry="6.5" transform="rotate(-12 62 78)" fill="#fff1d0" stroke="#e2b04a" />
+      <ellipse cx="34" cy="96" rx="14" ry="5" transform="rotate(30 34 96)" fill="#ffb7c8" fillOpacity="0.7" stroke="#e24b73" />
+      <ellipse cx="108" cy="52" rx="15" ry="5.5" transform="rotate(-28 108 52)" fill="#ffe8d6" stroke="#ff7a59" />
+      <ellipse cx="48" cy="142" rx="13" ry="5" transform="rotate(24 48 142)" stroke="#5f9a6a" fill="#7dcea0" fillOpacity="0.55" />
+      <Blossom x={82} y={112} fill="#f06292" />
+      <Blossom x={146} y={70} scale="0.82" fill="#ffb347" />
+      <Blossom x={56} y={166} scale="0.62" fill="#e24b73" />
     </svg>
   );
 }
@@ -67,9 +67,9 @@ export function FloralCorners({ className = "text-floral", size = "h-24 w-24 sm:
 export function FloralDivider({ className = "" }) {
   return (
     <div className={`flex items-center justify-center gap-3 ${className}`} aria-hidden="true">
-      <span className="h-px w-10 bg-floral sm:w-16" />
-      <span className="h-1.5 w-1.5 rotate-45 bg-rose" />
-      <span className="h-px w-10 bg-floral sm:w-16" />
+      <span className="h-px w-10 bg-gradient-to-r from-transparent to-champagne sm:w-16" />
+      <span className="h-2 w-2 rotate-45 bg-gradient-to-br from-rose to-champagne" />
+      <span className="h-px w-10 bg-gradient-to-l from-transparent to-champagne sm:w-16" />
     </div>
   );
 }
@@ -77,12 +77,12 @@ export function FloralDivider({ className = "" }) {
 export function SmallBouquet({ className = "" }) {
   return (
     <svg viewBox="0 0 160 70" className={className} aria-hidden="true">
-      <path d="M20 40c30 0 40-16 60-8 20 8 30 8 60 0" stroke="#c87888" strokeWidth="1" fill="none" />
-      <Blossom x={48} y={36} scale="0.7" fill="#e9aab5" />
-      <Blossom x={80} y={28} fill="#f3c3cb" />
-      <Blossom x={112} y={36} scale="0.7" fill="#c87888" />
-      <ellipse cx="64" cy="42" rx="12" ry="4" fill="#8fa08a" fillOpacity="0.35" transform="rotate(-20 64 42)" />
-      <ellipse cx="98" cy="42" rx="12" ry="4" fill="#8fa08a" fillOpacity="0.35" transform="rotate(20 98 42)" />
+      <path d="M20 40c30 0 40-16 60-8 20 8 30 8 60 0" stroke="#e2b04a" strokeWidth="1.4" fill="none" />
+      <Blossom x={48} y={36} scale="0.7" fill="#f06292" />
+      <Blossom x={80} y={28} fill="#ffb347" />
+      <Blossom x={112} y={36} scale="0.7" fill="#e24b73" />
+      <ellipse cx="64" cy="42" rx="12" ry="4" fill="#5f9a6a" fillOpacity="0.55" transform="rotate(-20 64 42)" />
+      <ellipse cx="98" cy="42" rx="12" ry="4" fill="#7dcea0" fillOpacity="0.55" transform="rotate(20 98 42)" />
     </svg>
   );
 }

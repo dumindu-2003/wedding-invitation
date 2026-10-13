@@ -53,7 +53,7 @@ export default function MusicPlayer() {
         aria-label={label}
         title={label}
         disabled={unavailable}
-        className="fixed right-[max(1rem,env(safe-area-inset-right))] bottom-[max(1rem,env(safe-area-inset-bottom))] z-40 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-floral bg-ivory text-romantic shadow-[0_8px_24px_rgba(168,50,74,0.15)] disabled:opacity-50"
+        className="fixed right-[max(1rem,env(safe-area-inset-right))] bottom-[max(1rem,env(safe-area-inset-bottom))] z-40 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border-2 border-champagne bg-gradient-to-br from-ivory to-blush text-romantic shadow-[0_8px_24px_rgba(194,24,91,0.22)] disabled:opacity-50"
       >
         {playing ? <Pause className="h-4 w-4" strokeWidth={1.5} /> : <Music className="h-4 w-4" strokeWidth={1.5} />}
       </button>
